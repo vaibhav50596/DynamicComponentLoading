@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { AdComponent } from './../ad.component'
+import { ComponentData } from './../ad.component'
 
 @Component({
     template: `
@@ -16,8 +17,10 @@ import { AdComponent } from './../ad.component'
     </div>
   `
 })
-export class HeroJobAdComponent implements AdComponent, OnInit {
+export class HeroJobAdComponent implements AdComponent, OnInit, ComponentData {
     @Input() data: any;
+    @Input() type: any;
+    @Input() properties: any;
     inputFieldArray: any = [];
 
     ngOnInit(): void {

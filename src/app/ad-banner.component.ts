@@ -6,6 +6,7 @@ import { AdComponent } from './ad.component';
 import { HeroJobAdComponent } from "./component_two/hero-job-ad.component";
 import { HeroProfileComponent } from "./component_one/hero-profile.component";
 import { RenderService } from "./service/render-service.service";
+import { ComponentData } from './ad.component'
 
 @Component({
     selector: 'app-ad-banner',
@@ -24,6 +25,8 @@ export class AdBannerComponent implements OnInit {
     @ViewChild(AdDirective) adHost: AdDirective;
     interval: any;
     inputFieldArray: any = [];
+    REGISTRY: any;
+    factoryCmp: any;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private service: RenderService) { }
 
@@ -50,15 +53,31 @@ export class AdBannerComponent implements OnInit {
     loadComponent() {
         this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
         let adItem = this.ads[this.currentAdIndex];
+        
+        type ComponentClass = { new (): ComponentData };
+        
+        this.REGISTRY = new Map<string, ComponentClass>();
+        this.REGISTRY.set("profile", HeroProfileComponent);
+        this.REGISTRY.set("jobAd", HeroJobAdComponent);
+debugger
+        //REGISTRY.forEach(ele => getTypeFor(ele))
+        
 
         for(let i=0; i<this.ads.length; i++){
-            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.ads[i].component);
+            let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.getTypeFor("profile"));
             let viewContainerRef = this.adHost.viewContainerRef;
             // viewContainerRef.clear();
     
             let componentRef = viewContainerRef.createComponent(componentFactory);
             (<AdComponent>componentRef.instance).data = this.ads[i].data;
+            (<ComponentData>componentRef.instance).properties = this.ads[i].data;
         }   
+    }
+
+    getTypeFor(name: string) {
+        this.factoryCmp =  this.REGISTRY.get(name);
+        console.log(this.factoryCmp)
+        return this.factoryCmp;
     }
 
     // getAds() {

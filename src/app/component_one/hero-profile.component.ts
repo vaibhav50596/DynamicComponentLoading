@@ -1,14 +1,15 @@
 import { Component, Input, OnInit, Renderer2, ElementRef } from '@angular/core';
 
 import { AdComponent } from './../ad.component';
+import { ComponentData } from './../ad.component'
 
 @Component({
   template: `
     <div class="hero-profile" style="background-color:yellow">
       <h3>Featured Hero Profile</h3>
-      <span>Hero Name: {{data.name}}</span>
+      <span>Hero Name: {{properties.name}}</span>
       <br>
-      <span>Hero Details: {{data.bio}}</span>
+      <span>Hero Details: {{properties.bio}}</span>
       <br>
       <strong>Submit your resume today!!</strong>
       <div *ngFor="let input of inputFieldArray">
@@ -18,9 +19,11 @@ import { AdComponent } from './../ad.component';
     </div>
   `
 })
-export class HeroProfileComponent implements AdComponent, OnInit {
+export class HeroProfileComponent implements AdComponent, OnInit, ComponentData {
   inputFieldArray: any = [];
   @Input() data: any;
+  @Input() type: any;
+  @Input() properties: any;
 
   constructor()
   { }

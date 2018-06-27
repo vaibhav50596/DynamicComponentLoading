@@ -5,7 +5,8 @@ import { HeroJobAdComponent } from "./../component_two/hero-job-ad.component";
 
 @Injectable()
 export class RenderService {
-
+  adItem:AdItem;
+  adItems:AdItem[] = [];
   constructor(private renderer: Renderer2, private el: ElementRef) {
   }
 
@@ -18,6 +19,11 @@ export class RenderService {
   // }
 
   getAds(elementType: string) {
+    debugger
+    //this.adItems.push(new AdItem(HeroProfileComponent, { name: 'Iron Man Hero', bio: 'Hero of Marvel Comics' }));
+    //this.adItems.push(new AdItem(HeroJobAdComponent, { headline: 'Hiring for Several Positions', body: 'Hire this hero!' }));
+    
+  
     if (elementType == "file") {
       return new AdItem(HeroProfileComponent, { name: 'Iron Man Hero', bio: 'Hero of Marvel Comics' });
     } else if (elementType == "button") {
