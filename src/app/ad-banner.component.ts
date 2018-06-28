@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewChild, ComponentFactoryResolver, OnDestro
 
 import { AdDirective } from './ad.directive';
 import { AdItem } from './ad-item';
-import { AdComponent } from './ad.component';
 import { HeroJobAdComponent } from "./component_two/hero-job-ad.component";
 import { HeroProfileComponent } from "./component_one/hero-profile.component";
 import { RenderService } from "./service/render-service.service";
