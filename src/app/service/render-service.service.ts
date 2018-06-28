@@ -1,13 +1,12 @@
 import { Injectable, Renderer2, ElementRef, RendererFactory2 } from '@angular/core';
-import { AdItem } from "./../ad-item";
 import { HeroProfileComponent } from "./../component_one/hero-profile.component";
 import { HeroJobAdComponent } from "./../component_two/hero-job-ad.component";
+import { ComponentsRegistry } from './../registry';
+import { ComponentData } from './../ad.component'
 
 @Injectable()
 export class RenderService {
-  adItem:AdItem;
-  adItems:AdItem[] = [];
-  constructor(private renderer: Renderer2, private el: ElementRef) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private componentRegistry: ComponentsRegistry) {
   }
 
   // createElement() {
@@ -18,18 +17,11 @@ export class RenderService {
   //     return inputField;
   // }
 
-  getAds(elementType: string) {
-    debugger
-    //this.adItems.push(new AdItem(HeroProfileComponent, { name: 'Iron Man Hero', bio: 'Hero of Marvel Comics' }));
-    //this.adItems.push(new AdItem(HeroJobAdComponent, { headline: 'Hiring for Several Positions', body: 'Hire this hero!' }));
-    
-  
-    if (elementType == "file") {
-      return new AdItem(HeroProfileComponent, { name: 'Iron Man Hero', bio: 'Hero of Marvel Comics' });
-    } else if (elementType == "button") {
-      return new AdItem(HeroJobAdComponent, { headline: 'Hiring for Several Positions', body: 'Hire this hero!' });
-    } else {
-      return ""
-    }
+  getComponents(elementType: string) {
+    return this.componentRegistry.getComponents(elementType);
+  }
+
+  addComponents(componentKey:string, componentName:any) {
+    this.componentRegistry.addComponents(componentKey, componentName);
   }
 }

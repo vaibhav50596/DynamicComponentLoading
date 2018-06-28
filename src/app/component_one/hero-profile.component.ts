@@ -1,15 +1,15 @@
 import { Component, Input, OnInit, Renderer2, ElementRef } from '@angular/core';
 
-import { AdComponent } from './../ad.component';
+//import { AdComponent } from './../ad.component';
 import { ComponentData } from './../ad.component'
 
 @Component({
   template: `
     <div class="hero-profile" style="background-color:yellow">
       <h3>Featured Hero Profile</h3>
-      <span>Hero Name: {{properties.name}}</span>
+      <span>Hero Name: {{properties}}</span>
       <br>
-      <span>Hero Details: {{properties.bio}}</span>
+      <span>Hero Details: {{properties}}</span>
       <br>
       <strong>Submit your resume today!!</strong>
       <div *ngFor="let input of inputFieldArray">
@@ -19,11 +19,12 @@ import { ComponentData } from './../ad.component'
     </div>
   `
 })
-export class HeroProfileComponent implements AdComponent, OnInit, ComponentData {
+export class HeroProfileComponent implements OnInit, ComponentData {
   inputFieldArray: any = [];
-  @Input() data: any;
+  
   @Input() type: any;
   @Input() properties: any;
+
 
   constructor()
   { }
@@ -39,15 +40,5 @@ export class HeroProfileComponent implements AdComponent, OnInit, ComponentData 
         placeholder: 'upload resume'
       },
     ];
-
-
-    // const divField = this.renderer.createElement('div');
-    // const inputField = this.renderer.createElement('input');
-    // this.renderer.appendChild(divField, inputField);
-    // this.renderer.appendChild(this.el.nativeElement, divField);
-  }
-
-  
-
-
+  } 
 }

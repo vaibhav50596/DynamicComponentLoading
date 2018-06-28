@@ -1,18 +1,36 @@
-import { AdItem } from './ad-item';
-import { OnInit } from "@angular/core";
+
+import { OnInit, Component, Input } from "@angular/core";
 import { HeroProfileComponent } from "./component_one/hero-profile.component";
 import { HeroJobAdComponent } from "./component_two/hero-job-ad.component";
+import { ComponentData } from './ad.component'
 
-export class ComponentsRegistry implements OnInit{
-    
-    adItem: AdItem[] = [];
+@Component({
+    selector: 'cmp-registry',
+    templateUrl: './registry.component.html'
+})
+
+export class ComponentsRegistry implements OnInit, ComponentData{
+    factoryCmp: any;
+    REGISTRY: Map<string, ComponentData> = new Map<string, ComponentData>();
+    @Input() type: any;
+    @Input() properties: any;
 
     constructor(){
     }
 
     ngOnInit(): void {
-        
-    this.adItem.push(new AdItem(HeroProfileComponent, { name: 'Iron Man Hero', bio: 'Hero of Marvel Comics' }));
-    this.adItem.push(new AdItem(HeroJobAdComponent, { headline: 'Hiring for Several Positions', body: 'Hire this hero!' }));
+        //type ComponentClass = { new (): ComponentData }; 
+        //this.REGISTRY = new Map<string, ComponentClass>();
+    }
+
+    addComponents(key:string, componentName:any){
+        // this.REGISTRY.set("file", HeroProfileComponent);
+        // this.REGISTRY.set("button", HeroJobAdComponent);
+        this.REGISTRY.set(key, componentName);
+    }
+
+    getComponents(componentKey: string){
+        this.factoryCmp =  this.REGISTRY.get(componentKey);
+        return this.factoryCmp;
     }
 }
