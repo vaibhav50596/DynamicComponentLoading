@@ -35,7 +35,7 @@ export class HeroProfileComponent implements OnInit, ComponentData {
       {
         type: 'file',
         name: 'upload resume',
-        value: 'Upload Resume!',
+        value: '',
         required: true,
         placeholder: 'upload resume'
       },

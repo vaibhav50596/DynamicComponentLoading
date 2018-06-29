@@ -10,15 +10,38 @@ import { AdItem } from "./ad-item";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  //title = 'app';
-  //inputFieldArray: any = [];
-  //ads: AdItem[];
-
+  
+  config = [
+    {
+      type: 'input',
+      label: 'First name',
+      name: 'fname',
+      placeholder: 'First name',
+    },
+    {
+      type: 'input',
+      label: 'Last name',
+      name: 'lname',
+      placeholder: 'Last name',
+    }
+    // {
+    //   type: 'select',
+    //   label: 'Favourite food',
+    //   name: 'food',
+    //   options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+    //   placeholder: 'Select an option',
+    // },
+    // {
+    //   label: 'Submit',
+    //   name: 'submit',
+    //   type: 'button',
+    // },
+  ];
   constructor(private renderer: Renderer2, private el: ElementRef, private service: RenderService)
   { }
-  // @ViewChild('div') div: ElementRef;
 
   ngOnInit(): void {
+   
   //this.ads = this.service.getAds();
 
   //   this.inputFieldArray = [
