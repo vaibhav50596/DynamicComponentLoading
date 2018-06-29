@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -7,15 +7,16 @@ import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular
     <div class="dynamic-field form-input">
       <form [formGroup]="group">
       <label>{{ config.label }}</label>
-      <input [type]="config.type" [name]="config.name" [placeholder]="config.placeholder" 
-      [formControlName]="config.name" [value]="config.value" class="textClass">
+      <button [type]="config.type" [name]="config.name" class="textClass" (click)="dataSubmitted(group.value)">
+      {{config.value}}</button>
       </form>
     </div>
   `,
 })
-export class FormInputComponent {
+export class FormButtonComponent {
   config;
   group: FormGroup;
+  @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -23,5 +24,9 @@ export class FormInputComponent {
   createForm() {
     this.group = this.fb.group({
     });
+  }
+  dataSubmitted(formData){
+    this.submitted.emit(formData);
+    console.log(formData.fname);
   }
 }

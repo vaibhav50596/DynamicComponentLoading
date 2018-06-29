@@ -1,9 +1,11 @@
 import { Directive, Input, ComponentFactoryResolver, ViewContainerRef,OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormInputComponent } from './form-input/form-input.component';
+import { FormButtonComponent } from './form-button/form-button.component';
 
 const components = {
-    input: FormInputComponent
+    input: FormInputComponent,
+    button: FormButtonComponent,
   };
 
 @Directive({
@@ -19,7 +21,6 @@ export class DynamicFieldDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-      debugger
     const component = components[this.config.type];
     const factory = this.resolver.resolveComponentFactory(component);
     this.component = this.container.createComponent(factory);

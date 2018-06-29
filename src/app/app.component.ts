@@ -17,12 +17,21 @@ export class AppComponent implements OnInit {
       label: 'First name',
       name: 'fname',
       placeholder: 'First name',
+      value:''
     },
     {
       type: 'input',
       label: 'Last name',
       name: 'lname',
       placeholder: 'Last name',
+      value:''
+    },
+    {
+      type: 'button',
+      label: 'Submit Form',
+      name: 'submit',
+      placeholder: '',
+      value:"Submit"
     }
     // {
     //   type: 'select',

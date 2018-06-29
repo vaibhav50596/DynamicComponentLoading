@@ -34,7 +34,6 @@ export class AdBannerComponent implements OnInit  {
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private service: RenderService,
                 private fb: FormBuilder) { 
-        
     }
 
     ngOnInit() {

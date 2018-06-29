@@ -10,7 +10,8 @@ import { HeroJobAdComponent } from "./component_two/hero-job-ad.component";
 import { AdBannerComponent } from "./ad-banner.component";
 import { ComponentsRegistry } from './registry';
 import { FormInputComponent } from './form-input/form-input.component';
-import { DynamicFieldDirective } from './dynamic-field.directive'
+import { DynamicFieldDirective } from './dynamic-field.directive';
+import { FormButtonComponent } from './form-button/form-button.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { DynamicFieldDirective } from './dynamic-field.directive'
     HeroProfileComponent,
     AdDirective,
     FormInputComponent,
-    DynamicFieldDirective
+    DynamicFieldDirective,
+    FormButtonComponent
   ],
   imports: [ BrowserModule, FormsModule,ReactiveFormsModule ],
-  entryComponents: [ HeroJobAdComponent, HeroProfileComponent, FormInputComponent ],
+  entryComponents: [ HeroJobAdComponent, HeroProfileComponent, FormInputComponent, FormButtonComponent ],
   providers: [RenderService, ComponentsRegistry],
   bootstrap: [AppComponent]
 })
